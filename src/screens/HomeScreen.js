@@ -28,7 +28,7 @@ const HomeScreen = ({ navigation, route }) => {
         const token = await AsyncStorage.getItem('userToken');
 
         // Fetch upcoming 5 schedules
-        const upcomingResponse = await axios.get('http://192.168.1.110:5000/api/schedules/upcoming', {
+        const upcomingResponse = await axios.get('http://192.168.1.105:5000/api/schedules/upcoming', {
           headers: { Authorization: `Bearer ${token}` },
           params: {
             ...(selectedArea && { area: selectedArea }),
@@ -38,7 +38,7 @@ const HomeScreen = ({ navigation, route }) => {
         setUpcomingSchedules(upcomingResponse.data);
 
         // Fetch past 10 schedules
-        const pastResponse = await axios.get('http://192.168.1.110:5000/api/schedules/past', {
+        const pastResponse = await axios.get('http://192.168.1.105:5000/api/schedules/past', {
           headers: { Authorization: `Bearer ${token}` },
           params: {
             ...(selectedArea && { area: selectedArea }),
@@ -48,7 +48,7 @@ const HomeScreen = ({ navigation, route }) => {
         setPastSchedules(pastResponse.data);
 
         // Fetch areas from the database
-        const areasResponse = await axios.get('http://192.168.1.110:5000/api/schedules/areas', {
+        const areasResponse = await axios.get('http://192.168.1.105:5000/api/schedules/areas', {
           headers: { Authorization: `Bearer ${token}` },
         });
         const mappedAreas = areasResponse.data.map(area => ({
